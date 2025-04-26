@@ -1,44 +1,51 @@
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-edu-light to-background">
+    <section className="py-16 bg-[#f8fafc]">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="space-y-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Эффективная и уважительная онлайн-коммуникация: вместе для будущего детей
             </h1>
             
-            <p className="text-lg text-gray-700">
-              Добро пожаловать на платформу, созданную для улучшения цифрового взаимодействия между школой и родителями. 
-              Мы стремимся помочь учителям и родителям выстроить продуктивную коммуникацию, которая способствует успеху учащихся.
+            <p className="text-gray-700">
+              Наш проект создан для улучшения цифрового взаимодействия между школой
+              и родителями, обеспечивая комфортное и продуктивное общение всех
+              участников образовательного процесса.
             </p>
             
-            <p className="text-lg text-gray-700">
-              Наш портал предоставляет регламенты, рекомендации и инструменты для комфортного и эффективного общения в цифровой среде.
+            <p className="text-gray-700">
+              Здесь вы найдете регламенты и рекомендации, которые помогут сделать
+              онлайн-коммуникацию более эффективной и уважительной.
             </p>
             
-            <div className="pt-4">
-              <Link to="/regulations" className="btn-primary inline-flex items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+              <Link to="/regulations" className="btn-primary text-center">
                 Перейти к памятке
-                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+              
+              <Link to="/channels" className="btn-secondary text-center">
+                Инструкции по входу в электронный дневник
+              </Link>
+              
+              <Link to="/feedback" className="btn-secondary text-center">
+                Задать вопрос педагогу
+              </Link>
+              
+              <Link to="/feedback" className="btn-secondary text-center">
+                Оценить взаимодействие
               </Link>
             </div>
           </div>
           
-          <div className="relative">
+          <div className="mt-8 lg:mt-0">
             <img 
-              src="https://images.unsplash.com/photo-1551966775-a4ddc8df052b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+              src="https://cdn.poehali.dev/files/f95acc50-501a-45b8-b27b-9226e7f2bda1.png" 
               alt="Взаимодействие педагог-родитель-ребёнок" 
-              className="rounded-xl shadow-lg object-cover w-full max-h-[500px]"
+              className="rounded-lg shadow-md w-full h-auto object-cover"
             />
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg max-w-[240px] hidden md:block">
-              <p className="text-sm font-medium text-primary">
-                "Эффективное общение — ключ к успеху наших детей в образовании"
-              </p>
-            </div>
           </div>
         </div>
       </div>

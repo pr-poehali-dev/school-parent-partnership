@@ -1,56 +1,42 @@
-import { Link } from "react-router-dom";
-import { 
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuLink,
-  navigationMenuTriggerStyle
-} from "@/components/ui/navigation-menu";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Bookmark, HelpCircle, Home, Info, Mail, MessageSquare, Users } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const NavItems = [
   { 
     title: "Главная", 
-    href: "/", 
-    icon: <Home className="h-4 w-4 mr-1" /> 
+    href: "/" 
   },
   { 
     title: "О проекте", 
-    href: "/about", 
-    icon: <Info className="h-4 w-4 mr-1" /> 
+    href: "/about"
   },
   { 
     title: "Регламент общения", 
-    href: "/regulations", 
-    icon: <Bookmark className="h-4 w-4 mr-1" /> 
+    href: "/regulations"
   },
   { 
     title: "Каналы связи", 
-    href: "/channels", 
-    icon: <MessageSquare className="h-4 w-4 mr-1" /> 
+    href: "/channels"
   },
   { 
     title: "Цифровой этикет", 
-    href: "/etiquette", 
-    icon: <Users className="h-4 w-4 mr-1" /> 
+    href: "/etiquette" 
   },
   { 
     title: "Вопросы и ответы", 
-    href: "/faq", 
-    icon: <HelpCircle className="h-4 w-4 mr-1" /> 
+    href: "/faq"
   },
   { 
     title: "Обратная связь", 
-    href: "/feedback", 
-    icon: <Mail className="h-4 w-4 mr-1" /> 
+    href: "/feedback"
   },
 ];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,44 +48,41 @@ const Header = () => {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 w-full transition-all duration-200",
-      isScrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
+      "sticky top-0 z-50 w-full transition-all duration-200 border-b",
+      isScrolled ? "bg-white shadow-sm py-2" : "bg-[#f8fafc] py-4"
     )}>
-      <div className="container flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="bg-primary p-2 rounded-full">
-            <Users className="h-5 w-5 text-white" />
-          </div>
-          <span className="font-bold text-lg text-primary">Школа и родители</span>
+      <div className="container-custom flex flex-col md:flex-row justify-between items-center">
+        <Link to="/" className="text-primary font-bold text-lg md:text-xl mb-2 md:mb-0">
+          Школа и родители: цифровое партнёрство
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:block">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {NavItems.map((item) => (
-                <NavigationMenuItem key={item.title}>
-                  {/* Исправлено: используем NavigationMenuLink напрямую вместо Link обёрнутого вокруг NavigationMenuLink */}
-                  <NavigationMenuLink
-                    className={navigationMenuTriggerStyle()}
-                    asChild
+        <nav className="hidden md:flex">
+          <ul className="flex space-x-1">
+            {NavItems.map((item) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <li key={item.title}>
+                  <Link
+                    to={item.href}
+                    className={cn(
+                      "px-4 py-2 rounded-md text-sm font-medium transition-colors",
+                      isActive 
+                        ? "bg-primary text-white" 
+                        : "text-gray-700 hover:bg-gray-100"
+                    )}
                   >
-                    <Link to={item.href}>
-                      <div className="flex items-center">
-                        {item.icon}
-                        {item.title}
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+                    {item.title}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden p-2"
+          className="md:hidden p-2 absolute right-4 top-4"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <div className="space-y-1.5">
@@ -114,18 +97,25 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white shadow-lg animate-fade-in">
           <div className="container py-4">
-            <nav className="flex flex-col space-y-3">
-              {NavItems.map((item) => (
-                <Link 
-                  key={item.title}
-                  to={item.href}
-                  className="flex items-center py-2 px-4 hover:bg-gray-100 rounded-md"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.icon}
-                  <span className="ml-2">{item.title}</span>
-                </Link>
-              ))}
+            <nav className="flex flex-col space-y-1">
+              {NavItems.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link 
+                    key={item.title}
+                    to={item.href}
+                    className={cn(
+                      "py-2 px-4 rounded-md",
+                      isActive 
+                        ? "bg-primary text-white" 
+                        : "hover:bg-gray-100"
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.title}
+                  </Link>
+                );
+              })}
             </nav>
           </div>
         </div>

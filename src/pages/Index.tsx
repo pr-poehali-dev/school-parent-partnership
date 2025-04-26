@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import QuickNavSection from "@/components/QuickNavSection";
 import Footer from "@/components/Footer";
 import { CheckCircle, Users, Shield, Lightbulb } from "lucide-react";
 
@@ -12,17 +11,15 @@ const Index = () => {
       <main className="flex-grow">
         <HeroSection />
         
-        <QuickNavSection />
-        
         {/* Benefits Section */}
-        <section className="py-16 bg-edu-muted">
+        <section className="py-16 bg-white">
           <div className="container-custom">
             <h2 className="section-title text-center mb-12">Что даёт наш проект</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                <div className="bg-edu-light p-2 rounded-full">
-                  <Users className="h-5 w-5 text-edu" />
+              <div className="bg-[#f8fafc] p-6 rounded-lg flex items-start space-x-4">
+                <div className="bg-primary/10 p-2 rounded-full">
+                  <Users className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Упрощает взаимодействие</h3>
@@ -30,9 +27,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                <div className="bg-edu-light p-2 rounded-full">
-                  <Shield className="h-5 w-5 text-edu" />
+              <div className="bg-[#f8fafc] p-6 rounded-lg flex items-start space-x-4">
+                <div className="bg-primary/10 p-2 rounded-full">
+                  <Shield className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Устраняет перегрузку</h3>
@@ -40,9 +37,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                <div className="bg-edu-light p-2 rounded-full">
-                  <CheckCircle className="h-5 w-5 text-edu" />
+              <div className="bg-[#f8fafc] p-6 rounded-lg flex items-start space-x-4">
+                <div className="bg-primary/10 p-2 rounded-full">
+                  <CheckCircle className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Повышает вовлечённость</h3>
@@ -50,9 +47,9 @@ const Index = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-sm flex items-start space-x-4">
-                <div className="bg-edu-light p-2 rounded-full">
-                  <Lightbulb className="h-5 w-5 text-edu" />
+              <div className="bg-[#f8fafc] p-6 rounded-lg flex items-start space-x-4">
+                <div className="bg-primary/10 p-2 rounded-full">
+                  <Lightbulb className="h-5 w-5 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Улучшает сопровождение</h3>
@@ -64,15 +61,15 @@ const Index = () => {
         </section>
         
         {/* CTA Section */}
-        <section className="py-16 bg-edu-accent/20">
+        <section className="py-16 bg-primary/5">
           <div className="container-custom text-center">
-            <h2 className="text-3xl font-bold mb-6">Готовы начать эффективное цифровое взаимодействие?</h2>
-            <p className="text-lg mb-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Готовы начать эффективное цифровое взаимодействие?</h2>
+            <p className="text-lg mb-8 max-w-2xl mx-auto text-gray-700">
               Изучите наши материалы и рекомендации, чтобы сделать общение между школой и родителями максимально продуктивным.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="/about" className="btn-primary">Узнать больше о проекте</a>
-              <a href="/regulations" className="btn-secondary">Перейти к регламенту</a>
+              <Link to="/about" className="btn-primary">Узнать больше о проекте</Link>
+              <Link to="/regulations" className="btn-secondary">Перейти к регламенту</Link>
             </div>
           </div>
         </section>
