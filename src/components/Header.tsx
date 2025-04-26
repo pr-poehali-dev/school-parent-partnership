@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import { 
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
+  NavigationMenuLink,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -67,7 +65,7 @@ const Header = () => {
       "sticky top-0 z-50 w-full transition-all duration-200",
       isScrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"
     )}>
-      <div className="container-custom flex justify-between items-center">
+      <div className="container flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <div className="bg-primary p-2 rounded-full">
             <Users className="h-5 w-5 text-white" />
@@ -81,14 +79,18 @@ const Header = () => {
             <NavigationMenuList>
               {NavItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
-                  <Link to={item.href}>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  {/* Исправлено: используем NavigationMenuLink напрямую вместо Link обёрнутого вокруг NavigationMenuLink */}
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle()}
+                    asChild
+                  >
+                    <Link to={item.href}>
                       <div className="flex items-center">
                         {item.icon}
                         {item.title}
                       </div>
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
@@ -117,7 +119,7 @@ const Header = () => {
                 <Link 
                   key={item.title}
                   to={item.href}
-                  className="flex items-center py-2 px-4 hover:bg-secondary rounded-md"
+                  className="flex items-center py-2 px-4 hover:bg-gray-100 rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.icon}
